@@ -1,0 +1,61 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "main",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "/root/datadisk/ssx/PORPOISE-master/main.py",
+            "console": "integratedTerminal",
+            "env": {"CUDA_VISIBLE_DEVICES":"0"},
+            "args": [
+                "--which_splits", "5foldcv",
+                "--split_dir", "tcga_blca",
+                "--mode", "pathomic",
+                "--reg_type", "pathomic",
+                "--model_type", "porpoise_mmf",
+                "--data_root_dir", "./DATA_ROOT_DIR",
+                "--fusion", "mmgf",
+                "--results_dir", "/root/ssx/new_mmf_result",    
+            ]
+        },
+        {
+            "name": "lsh",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "/root/datadisk/ssx/PORPOISE-master/main.py",
+            "console": "integratedTerminal",
+            "env": {"CUDA_VISIBLE_DEVICES":"0"},
+            "args": [
+                "--which_splits", "5foldcv",
+                "--split_dir", "tcga_blca",
+                "--mode", "path",
+                "--model_type", "lsh_amil",
+                "--data_root_dir", "./DATA_ROOT_DIR",
+                "--results_dir", "/root/ssx/lsh_result",    
+            ]
+        },
+        {
+            "name": "multimodal",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "/root/datadisk/ssx/PORPOISE-master/main.py",
+            "console": "integratedTerminal",
+            "env": {"CUDA_VISIBLE_DEVICES":"0"},
+            "args": [
+                "--which_splits", "5foldcv",
+                "--split_dir", "tcga_blca",
+                "--mode", "coattn",
+                "--model_type", "multimodal",
+                "--data_root_dir", "./DATA_ROOT_DIR",
+                "--fusion", "bilinear",
+                "--results_dir", "/root/ssx/multimodal_result",
+                "--bag_loss", "ce_surv",
+                "--apply_sig",
+            ]
+        }
+    ]
+}
