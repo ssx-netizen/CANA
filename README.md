@@ -37,4 +37,30 @@ To set up the environment, install the required dependencies:
 ```bash
 conda env create -f environment.yml
 conda activate your_env_name
+```
+
+## **Run the Model**
+
+You can run the model using the following command:
+
+```bash
+CUDA_VISIBLE_DEVICES=0 nohup python main.py --which_splits 5foldcv --split_dir tcga_blca --mode coattn --model_type multimodal --data_root_dir ./DATA_ROOT_DIR --fusion 'bilinear' --results_dir /root/ssx/dist3 --apply_sig --bag_loss nll_surv --max_epochs 50 --early_stopping >./logs/dist_3.txt 2>&1 &
+```
+
+### **Explanation of the command:**
+
+- `CUDA_VISIBLE_DEVICES=0`: Ensures that the computation is run on the specified GPU device (GPU 0).
+- `nohup`: Runs the process in the background, allowing it to continue even if the session is closed.
+- `python main.py`: Executes the main Python script for training and evaluation.
+- `--which_splits 5foldcv`: Specifies the type of cross-validation splits (5-fold cross-validation).
+- `--split_dir tcga_blca`: Refers to the directory for the TCGA-BLCA dataset.
+- `--mode coattn`: Defines the mode of attention mechanism for multimodal fusion.
+- `--model_type multimodal`: Specifies the model type to be used, in this case, a multimodal approach.
+- `--data_root_dir ./DATA_ROOT_DIR`: Specifies the root directory of the dataset.
+- `--fusion 'bilinear'`: Defines the fusion strategy (bilinear).
+- `--results_dir /root/ssx/dist3`: Directory to store the results.
+- `--apply_sig`: A flag for applying the sigmoid function.
+- `--bag_loss nll_surv`: Specifies the loss function (negative log-likelihood for survival analysis).
+- `--max_epochs 50`: Limits the training to a maximum of 50 epochs.
+- `--early_stopping`: Activates early stopping to prevent overfitting.
 
